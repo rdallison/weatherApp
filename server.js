@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( { extended: false} ));
-app.use(express.static('root'));
+//app.use(express.static('root'));
 
 const port = 8000;
 
@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     res.send(projectData);
 })
 
-app.post('/addFeeling', (req, res) => {
+app.post('/', (req, res) => {
    
     const newData = {
         temp: req.body.temp,
@@ -31,7 +31,7 @@ app.post('/addFeeling', (req, res) => {
     };
 
     projectData.push(newData);
-    res.send(newData);
+    //res.send(newData);
     console.log(newData);
 
 })

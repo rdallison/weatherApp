@@ -14,9 +14,10 @@ document.getElementById('generate').addEventListener('click', () => {
     .then(data => {
         const feel = document.getElementById('feelings').value;
         //console.log(data.main.temp + ' ' + newDate + ' ' + feel);
-        postWeather(`/addFeeling`, {temp: data.main.temp, date: newDate, feelings: feel});
+        postWeather('', {temp: data.main.temp, date: newDate, feelings: feel});
         
-    });
+    })
+    .then(data => console.log(data));
     
 })
 
@@ -37,7 +38,7 @@ const getWeather = async (baseURL, apiKey, zip) => {
     }
 }
 
-const postWeather = async (url = '/', data = {}) => {
+const postWeather = async (url = '', data = {}) => {
     
 
 
