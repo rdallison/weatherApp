@@ -13,7 +13,8 @@ document.getElementById('generate').addEventListener('click', () => {
     getWeather(baseURL, apiKey, zip)
     .then(data => {
         const feel = document.getElementById('feelings').value;
-        console.log(postWeather(`${baseURL}${zip}&appid=${apiKey}`, {newDate, feel}));
+        //console.log(data.main.temp + ' ' + newDate + ' ' + feel);
+        postWeather(`/addFeeling`, {temp: data.main.temp, date: newDate, feelings: feel});
         
     });
     
@@ -36,10 +37,10 @@ const getWeather = async (baseURL, apiKey, zip) => {
     }
 }
 
-const postWeather = async (url = '', data = {}) => {
-    console.log(data);
+const postWeather = async (url = '/', data = {}) => {
+    
 
-    /*
+
     const response = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -48,16 +49,12 @@ const postWeather = async (url = '', data = {}) => {
         },
         body: JSON.stringify(data)
     });
-
     try{
-        newData = {
-            temp = this.temp;
-            date = this.date;
-            feelings = this.feelings;
+        newData = await response.json();
+        console.log(newData);
+        return newData;
+        }catch(error){
+            console.log(`we have encountered this error: ${error}`);
+
         }
-        
-    }catch(error){
-        console.log(`We have encounted this error: ${error}`)
-    }
-    */
 }

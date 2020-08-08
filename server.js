@@ -22,7 +22,16 @@ app.get('/', (req, res) => {
     res.send(projectData);
 })
 
-app.post('/', (req, res) => {
-    projectData.push[req.body];
-    console.log(req.body);
+app.post('/addFeeling', (req, res) => {
+   
+    const newData = {
+        temp: req.body.temp,
+        date: req.body.date,
+        feelings: req.body.feelings
+    };
+
+    projectData.push(newData);
+    res.send(newData);
+    console.log(newData);
+
 })
